@@ -3,15 +3,15 @@ require 'gpx'
 class Track
 
   def initialize(file)
-    data = CSV::read file, headers: true
-    @points = data.map do |p|
+    @points = []
+    CSV.foreach(file, headers: true) do |p|
       tag = p["TAG"]
       ts = Time.parse "20#{p['DATE'].scan(/../).join('-')}T#{p['TIME'].scan(/../).join(':')}"
       lat = parse_lat p["LATITUDE N/S"]
       lon = parse_lon p["LONGITUDE E/W"]
       speed = p["SPEED"].to_i
       alt = p["HEIGHT"].to_i
-      { time: ts, lat: lat, lon: lon, speed: speed, elevation: alt, waypoint: (tag == 'C') }
+      @points << { time: ts, lat: lat, lon: lon, speed: speed, elevation: alt, waypoint: (tag == 'C') }
     end
   end
 

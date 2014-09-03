@@ -22,9 +22,8 @@ ARGV.each do |f|
     gpx = GPX::GPXFile.new tracks: [track.to_gpx]
     gpx.write(outputfile)
 
-    gpx = nil
-
     puts "Conversion complete"
+    sleep 1
   else
     puts "#{f} is not a CSV file!"
   end
