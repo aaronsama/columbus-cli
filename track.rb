@@ -6,7 +6,11 @@ class Track
     @points = []
     CSV.foreach(file, headers: true) do |p|
       tag = p["TAG"]
-      ts = Time.parse "20#{p['DATE'].scan(/../).join('-')}T#{p['TIME'].scan(/../).join(':')}"
+
+      date = "20#{p['DATE'].scan(/../).join('-')}"
+      time = "#{p['TIME'].length == 6 ? p['TIME'] : '0' + p['TIME']}".scan(/../).join(':')
+
+      ts = Time.parse "#{date}T#{time}"
       lat = parse_lat p["LATITUDE N/S"]
       lon = parse_lon p["LONGITUDE E/W"]
       speed = p["SPEED"].to_i
