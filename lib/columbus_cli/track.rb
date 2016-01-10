@@ -1,6 +1,6 @@
 require 'gpx'
 
-class Track
+class ColumbusCli::Track
 
   def initialize(file)
     @points = []
@@ -22,11 +22,8 @@ class Track
   def to_gpx
     segment = GPX::Segment.new
     @points.each do |p|
-      if p[:waypoint]
-        segment.append_point GPX::Waypoint.new(p)
-      else
-        segment.append_point GPX::TrackPoint.new(p)
-      end
+      point = GPX::TrackPoint.new(p)
+      segment.append_point point
     end
 
     track = GPX::Track.new

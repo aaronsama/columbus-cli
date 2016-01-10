@@ -1,0 +1,4 @@
+#! /usr/bin/env ruby
+
+require 'columbus_cli'
+ColumbusCli.start(ARGV)
