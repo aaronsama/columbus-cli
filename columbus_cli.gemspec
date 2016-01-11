@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "Tools to use with Columbus Trackloggers"
   s.authors     = ["Aaron Ciaghi"]
   s.email       = 'aaron.ciaghi@gmail.com'
-  s.files       = ["lib/columbus_cli.rb", "lib/columbus_cli/*.rb"]
+  s.files       = ["lib/columbus_cli.rb", "lib/columbus_cli/track.rb"]
   # s.homepage    =
   #   'http://rubygems.org/gems/hola'
   s.license       = 'MIT'

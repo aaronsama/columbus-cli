@@ -17,4 +17,4 @@ or
 How to use
 ----------
 
-`columbus csv2gpx <file.csv> --output=<output_file.gpx>
+`columbus csv2gpx <file.csv> --output=<output_file.gpx>`
