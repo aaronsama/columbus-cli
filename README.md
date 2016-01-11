@@ -5,20 +5,16 @@ Columbus Command Line Interface
 
 More features coming soon depending on what I need. Suggestions are welcome.
 
-Requirements
-------------
+Installation
+---------
 
-* ruby >= 1.9.3
-* gpx gem (`gem install gpx`)
+`gem install columbus-cli`
+
+or
+
+`gem build columbus_cli.gemspec`
 
 How to use
 ----------
 
-`csv2gpx.rb <file(s)>` (you can either pass one file, use wildcards or pass multiple files)
-
-The script will generate GPX files with the same name as the original CSV.
-
-The Future
-----------
-
-At the moment I use this script to generate GPX files that are later used to geotag my photos. The real goal of this tool is to be able to geotag photos and to figure out time offset between the camera and the GPS painlessly.
+`columbus csv2gpx <file.csv> --output=<output_file.gpx>
