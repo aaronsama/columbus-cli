@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'gpx', '~> 0.8.2'
   s.add_runtime_dependency 'thor'
+  s.add_runtime_dependency 'strava-api-v3', '~> 0.6.1'
 
   s.add_development_dependency 'pry'
 end

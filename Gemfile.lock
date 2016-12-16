@@ -3,6 +3,7 @@ PATH
   specs:
     columbus-cli (1.1.0)
       gpx (~> 0.8.2)
+      strava-api-v3 (~> 0.6.1)
       thor
 
 GEM
@@ -12,8 +13,18 @@ GEM
     gpx (0.8.2)
       nokogiri
       rake
+    httmultiparty (0.3.16)
+      httparty (>= 0.7.3)
+      mimemagic
+      multipart-post
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     method_source (0.8.2)
+    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
+    multi_json (1.12.1)
+    multi_xml (0.6.0)
+    multipart-post (2.0.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     pry (0.10.4)
@@ -22,6 +33,9 @@ GEM
       slop (~> 3.4)
     rake (12.0.0)
     slop (3.6.0)
+    strava-api-v3 (0.6.1)
+      httmultiparty
+      multi_json
     thor (0.19.4)
 
 PLATFORMS
