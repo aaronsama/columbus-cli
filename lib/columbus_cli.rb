@@ -1,19 +1,22 @@
 require 'thor'
+require 'pry'
+require 'columbus_cli/converter'
 
-class ColumbusCli < Thor
-
-  desc 'csv2gpx CSV_FILE', 'Convert a CSV file created by a Columbus Tracklogger to GPX'
-  option :output, desc: 'Output file', required: true
-  def csv2gpx(csv_file)
-    puts "Converting #{csv_file} to #{options[:output]}..."
-
-    track = Track.new File.expand_path(csv_file)
-    gpx = GPX::GPXFile.new tracks: [track.to_gpx]
-    gpx.write(File.expand_path(options[:output]))
-
-    puts "Conversion complete"
+module ColumbusCli
+  class CLI < Thor
+    desc 'csv2gpx CSV_FILE', 'Convert a CSV file created by a Columbus Tracklogger to GPX. Use wildcards to convert multiple files at once.'
+    option :output, aliases: '-o', desc: 'Output file or directory (for multiple files only)', required: false
+    def csv2gpx(*csv_files)
+      res = csv_files.map do |f|
+        output_file ||= f.gsub(/.csv\z/i, '.gpx')
+        output_file += File.basename(f).gsub(/.csv\z/i, '.gpx') if File.directory?(output_file)
+        if file_collision(output_file)
+          ColumbusCli::Converter.new(f).convert_to(output_file)
+        else
+          false
+        end
+      end
+      say "Converted #{res.count(true)} out of #{res.count} files!", GREEN
+    end
   end
-
 end
-
-require 'columbus_cli/track.rb'
