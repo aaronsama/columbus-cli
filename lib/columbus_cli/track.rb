@@ -10,12 +10,19 @@ module ColumbusCli
         date = "20#{p['DATE'].scan(/../).join('-')}"
         time = "#{p['TIME'].length == 6 ? p['TIME'] : '0' + p['TIME']}".scan(/../).join(':')
 
-        ts = Time.parse "#{date}T#{time}"
+        ts = Time.parse "#{date}T#{time} GMT"
         lat = parse_lat p["LATITUDE N/S"]
         lon = parse_lon p["LONGITUDE E/W"]
         speed = p["SPEED"].to_i
         alt = p["HEIGHT"].to_i
-        @points << { time: ts, lat: lat, lon: lon, speed: speed, elevation: alt, waypoint: (tag == 'C') }
+        @points << {
+          time:      ts,
+          lat:       lat,
+          lon:       lon,
+          speed:     speed,
+          elevation: alt,
+          waypoint:  (tag == 'C')
+        }
       end
     end
 
